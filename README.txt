@@ -3,35 +3,25 @@ Introduction
 
 raptus.article.media provides audio and video support for Articles.
 
-This package is not listed as dependency in raptus.article.default. If you would
-install thies package please add it to the buildout.cfg. Read for this chapter Installation. 
-
 The following features for raptus.article are provided by this package:
 
-    * Contenttypes:
-        * Audio - Based on File - add your audio files in a article.
-        * Video - Based on File - add your video files in a article.
-        * VideoEmbed - Based on Link - add your reference to your video in a article.
+Content
+-------
+    * Audio - Based on File - add your audio files in a article.
+    * Video - Based on File - add your video files in a article.
+    * VideoEmbed - Based on Link - add your reference to your video in a article.
     
-    * Components:
-        * Audio (List of the audio files contained in the article)
-        * Video (List of the video files contained in the article)
+Components
+----------
+    * Audio (List of the audio files contained in the article)
+    * Video (List of the video files contained in the article)
 
-Dependencies:
-
+Dependencies
+------------
     * collective.flowplayer
     * Products.ContentTypeValidator
     * raptus.article.core
     * plone.app.imaging
-
-Plone 3 compatibility
----------------------
-
-This packages requires plone.app.imaging which requires two pins in buildout
-when using Plone 3, which there are:
-
-Products.Archetypes = 1.5.16
-plone.scale = 1.2
 
 Installation
 ============
@@ -64,6 +54,15 @@ Note that if you do not use the raptus.article.default package you have to
 include the zcml of raptus.article.media either by adding it
 to the zcml list in your buildout or by including it in another package's
 configure.zcml.
+
+Plone 3 compatibility
+---------------------
+
+This packages requires plone.app.imaging which requires two pins in buildout
+when using Plone 3, which there are::
+
+    Products.Archetypes = 1.5.16
+    plone.scale = 1.2
 
 Usage
 =====
@@ -129,7 +128,5 @@ more about the server side requirements of stxnext.transform.avi2flv.
 Copyright and credits
 =====================
 
-raptus.article is copyrighted by raptus_, and licensed under the GPL. 
+raptus.article is copyrighted by `Raptus AG <http://raptus.com>`_ and licensed under the GPL. 
 See LICENSE.txt for details.
-
-.. _raptus: http://raptus.com/ 

@@ -10,15 +10,17 @@ Code overview
 
 Components
 ----------
-plone.abovecontentbody:
 
+plone.abovecontentbody
+``````````````````````
 - raptus.article.media.video
 - raptus.article.media.audio
 
 Interfaces
 ----------
-file: interfaces.py
 
+file: interfaces.py
+```````````````````
 - IVideos (Provider for video files and embedded ones contained in an article)
     - getVideos - method (Returns a list of video files and embedded ones (catalog brains))
 
