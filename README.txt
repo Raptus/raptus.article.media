@@ -64,6 +64,17 @@ when using Plone 3, which there are::
     Products.Archetypes = 1.5.16
     plone.scale = 1.2
 
+
+Migration
+=========
+
+Blob-storage
+------------
+
+call this view on myplone/@@blob-article-media-migration and run the migration.
+all teaser have a separate view at myplone/@@blob-article-teaser-migration.
+
+
 Usage
 =====
 
