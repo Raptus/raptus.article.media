@@ -107,6 +107,7 @@ Video embed
 * YouTube
 * GoogleVideo
 * Vimeo
+* MyVideo
 
 Video
 -----

@@ -45,6 +45,10 @@
     <adapter
       name="vimeo"
       factory=".embedders.Vimeo" />
+      
+    <adapter
+      name="myvideo"
+      factory=".embedders.MyVideo" />
 
     <!-- File System Directory Views registration -->
     <cmf:registerDirectory

@@ -78,3 +78,18 @@ class Vimeo(BaseEmbedder):
         url = urlparse(self.context.getRemoteUrl())
         return "http://vimeo.com/moogaloop.swf?clip_id=%s&amp;server=vimeo.com" % url[2].split('/')[1]
     
+class MyVideo(BaseEmbedder):
+    name = "MyVideo"
+    _template = """
+    <object style="width:%(width)spx;height:%(height)spx;" width="%(width)s" height="%(height)s">
+      <param name="movie' value="%(url)s"></param>
+      <param name="AllowFullscreen" value="true"></param>
+      <param name="AllowScriptAccess" value="always"></param>
+      <embed src="%(url)s" width="%(width)s" height="%(height)s" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>
+    </object>
+    """
+    _expression = "^http(s)?://(www\.)?myvideo\.[a-z]{2,3}"
+    
+    def getUrl(self):
+        return self.context.getRemoteUrl().replace('/watch/', '/movie/')
+    
