@@ -64,10 +64,11 @@ class Viewlet(ViewletBase):
         i = 0
         l = len(items)
         for item in items:
+            view = component.queryMultiAdapter((item['obj'], self.request,), name='flowplayer')
             item.update({'title': item['brain'].Title,
                          'description': item['brain'].Description,
                          'class': self._class(item['brain'], i, l),
-                         'url': item['brain'].getURL(),
+                         'url': view is None and item['brain'].getURL() or view.href(),
                          'embed': False})
             if IVideoEmbed.providedBy(item['obj']):
                 embedders = component.getAdapters((item['obj'],), IVideoEmbedder)

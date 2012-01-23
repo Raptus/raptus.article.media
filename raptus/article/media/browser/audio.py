@@ -56,9 +56,10 @@ class Viewlet(ViewletBase):
         i = 0
         l = len(items)
         for item in items:
+            view = component.getMultiAdapter((item['obj'], self.request,), name='flowplayer')
             item.update({'title': item['brain'].Title,
                          'description': item['brain'].Description,
                          'class': self._class(item['brain'], i, l),
-                         'url': item['brain'].getURL()})
+                         'url': view.href()})
             i += 1
         return items

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0b9 (2012-01-23)
+------------------
+
+* fixed missing url parameter for article viewlet
+
 2.0b8 (2012-01-23)
 ------------------
 
