@@ -39,6 +39,10 @@
       factory=".embedders.YouTube" />
       
     <adapter
+      name="youtubeshort"
+      factory=".embedders.YouTubeShort" />
+      
+    <adapter
       name="googlevideo"
       factory=".embedders.GoogleVideo" />
       

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0b8 (2012-01-23)
+------------------
+
+* Added support for YouTube short URLs
+
 2.0b7 (2011-08-26)
 ------------------
 

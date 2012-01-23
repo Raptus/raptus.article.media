@@ -26,7 +26,7 @@ class BaseEmbedder(object):
         return self._template % dict(url=self.getUrl(),
                                      width=props.getProperty('media_video_width', 0),
                                      height=props.getProperty('media_video_height', 0))
-    
+
 class YouTube(BaseEmbedder):
     name = "YouTube"
     _template = """
@@ -44,7 +44,13 @@ class YouTube(BaseEmbedder):
         url = urlparse(self.context.getRemoteUrl())
         qs = parse_qs(url[4])
         return "http://www.youtube.com/v/%s" % qs.get('v', ['',])[0]
+
+class YouTubeShort(YouTube):
+    _expression = "^http://youtu.be/"
     
+    def getUrl(self):
+        return "http://www.youtube.com/v/%s" % self.context.getRemoteUrl()[16:]
+
 class GoogleVideo(BaseEmbedder):
     name = "GoogleVideo"
     _template = """
@@ -62,7 +68,7 @@ class GoogleVideo(BaseEmbedder):
         url = urlparse(self.context.getRemoteUrl())
         qs = parse_qs(url[4])
         return "http://video.google.com/googleplayer.swf?docid=%s" % qs.get('docid', ['',])[0]
-    
+
 class Vimeo(BaseEmbedder):
     name = "Vimeo"
     _template = """
@@ -77,7 +83,7 @@ class Vimeo(BaseEmbedder):
     def getUrl(self):
         url = urlparse(self.context.getRemoteUrl())
         return "http://vimeo.com/moogaloop.swf?clip_id=%s&amp;server=vimeo.com" % url[2].split('/')[1]
-    
+
 class MyVideo(BaseEmbedder):
     name = "MyVideo"
     _template = """
@@ -92,4 +98,3 @@ class MyVideo(BaseEmbedder):
     
     def getUrl(self):
         return self.context.getRemoteUrl().replace('/watch/', '/movie/')
-    
