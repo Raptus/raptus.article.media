@@ -8,24 +8,29 @@ from Products.CMFCore.utils import getToolByName
 
 from raptus.article.media import interfaces
 
+
 class BaseEmbedder(object):
     interface.implements(interfaces.IVideoEmbedder)
     component.adapts(interfaces.IVideoEmbed)
-    
+
     _template = """"""
     _expression = ""
-    
+
     def __init__(self, context):
         self.context = context
-        
+
     def matches(self):
         return re.match(self._expression, self.context.getRemoteUrl()) is not None
-    
+
+    def scheme(self):
+        return 'https'#urlparse(self.context.absolute_url())[0]
+
     def getEmbedCode(self):
         props = getToolByName(self.context, 'portal_properties').raptus_article
         return self._template % dict(url=self.getUrl(),
                                      width=props.getProperty('media_video_width', 0),
                                      height=props.getProperty('media_video_height', 0))
+
 
 class YouTube(BaseEmbedder):
     name = "YouTube"
@@ -39,17 +44,19 @@ class YouTube(BaseEmbedder):
     </object>
     """
     _expression = "^http(s)?://(www\.)?youtube\.com"
-    
+
     def getUrl(self):
         url = urlparse(self.context.getRemoteUrl())
         qs = parse_qs(url[4])
-        return "http://www.youtube.com/v/%s" % qs.get('v', ['',])[0]
+        return "%s://www.youtube.com/v/%s" % (self.scheme(), qs.get('v', ['',])[0])
+
 
 class YouTubeShort(YouTube):
-    _expression = "^http://youtu.be/"
-    
+    _expression = "^http(s)?://youtu.be/"
+
     def getUrl(self):
-        return "http://www.youtube.com/v/%s" % self.context.getRemoteUrl()[16:]
+        return "%s://www.youtube.com/v/%s" % (self.scheme(), self.context.getRemoteUrl()[16:])
+
 
 class GoogleVideo(BaseEmbedder):
     name = "GoogleVideo"
@@ -63,11 +70,12 @@ class GoogleVideo(BaseEmbedder):
     </object>
     """
     _expression = "^http(s)?://video\.google\.com"
-    
+
     def getUrl(self):
         url = urlparse(self.context.getRemoteUrl())
         qs = parse_qs(url[4])
-        return "http://video.google.com/googleplayer.swf?docid=%s" % qs.get('docid', ['',])[0]
+        return "%s://video.google.com/googleplayer.swf?docid=%s" % (self.scheme(), qs.get('docid', ['',])[0])
+
 
 class Vimeo(BaseEmbedder):
     name = "Vimeo"
@@ -79,10 +87,12 @@ class Vimeo(BaseEmbedder):
     </object>
     """
     _expression = "^http(s)?://(www\.)?vimeo\.com"
-    
+
     def getUrl(self):
         url = urlparse(self.context.getRemoteUrl())
-        return "http://vimeo.com/moogaloop.swf?clip_id=%s&amp;server=vimeo.com" % url[2].split('/')[1]
+        scheme = self.scheme()
+        return "%s://%svimeo.com/moogaloop.swf?clip_id=%s&amp;server=vimeo.com" % (scheme, scheme and 'secure.' or '', url[2].split('/')[1])
+
 
 class MyVideo(BaseEmbedder):
     name = "MyVideo"
@@ -95,6 +105,6 @@ class MyVideo(BaseEmbedder):
     </object>
     """
     _expression = "^http(s)?://(www\.)?myvideo\.[a-z]{2,3}"
-    
+
     def getUrl(self):
         return self.context.getRemoteUrl().replace('/watch/', '/movie/')

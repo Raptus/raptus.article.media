@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '2.0b9'
+version = '2.0b10.dev'
 
 setup(name='raptus.article.media',
       version=version,
