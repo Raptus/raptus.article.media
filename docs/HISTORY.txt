@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b10 (unreleased)
+2.0b10 (2013-06-24)
 -------------------
 
 * Added https support
