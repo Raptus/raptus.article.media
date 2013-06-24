@@ -23,7 +23,7 @@ class BaseEmbedder(object):
         return re.match(self._expression, self.context.getRemoteUrl()) is not None
 
     def scheme(self):
-        return 'https'#urlparse(self.context.absolute_url())[0]
+        return urlparse(self.context.absolute_url())[0]
 
     def getEmbedCode(self):
         props = getToolByName(self.context, 'portal_properties').raptus_article

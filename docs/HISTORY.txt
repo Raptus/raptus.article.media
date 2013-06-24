@@ -4,7 +4,7 @@ Changelog
 2.0b11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+* Fixed bad release
 
 
 2.0b10 (2013-06-24)
