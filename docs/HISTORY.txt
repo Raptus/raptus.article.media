@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0b12 (unreleased)
+2.0b12 (2013-07-03)
 -------------------
 
 * Added new configuration option to enable/disable media links
