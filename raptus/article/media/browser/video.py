@@ -49,8 +49,14 @@ class Viewlet(ViewletBase):
 
     @property
     @memoize
+    def show_links(self):
+        props = getToolByName(self.context, 'portal_properties').raptus_article
+        return props.getProperty('media_video_link', False)
+
+    @property
+    @memoize
     def show_title(self):
-        """hide or show title. this can be set with a property in portal_porperties. 
+        """hide or show title. this can be set with a property in portal_properties. 
         """
         props = getToolByName(self.context, 'portal_properties').raptus_article
         return props.getProperty('media_video_title', True)

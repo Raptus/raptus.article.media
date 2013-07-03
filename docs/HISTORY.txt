@@ -4,7 +4,8 @@ Changelog
 2.0b12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+* Added new configuration option to enable/disable media links
+* Added new configuration option to enable/disable audio titles
 
 
 2.0b11 (2013-06-24)

@@ -11,30 +11,33 @@ from raptus.article.core import RaptusArticleMessageFactory as _
 from raptus.article.core import interfaces
 from raptus.article.media.interfaces import IAudios as IAudioProvider
 
+
 class IAudios(interface.Interface):
     """ Marker interface for the audios viewlet
     """
+
 
 class Component(object):
     """ Component which lists the audio files
     """
     interface.implements(interfaces.IComponent, interfaces.IComponentSelection)
     component.adapts(interfaces.IArticle)
-    
+
     title = _(u'Audio')
     description = _(u'List of the audio files contained in the article.')
     image = '++resource++audio.gif'
     interface = IAudios
     viewlet = 'raptus.article.media.audio'
-    
+
     def __init__(self, context):
         self.context = context
+
 
 class Viewlet(ViewletBase):
     """ Viewlet listing the audio files
     """
     index = ViewPageTemplateFile('audio.pt')
-    
+
     def _class(self, brain, i, l):
         cls = []
         if i == 0:
@@ -46,7 +49,21 @@ class Viewlet(ViewletBase):
         if i % 2 == 1:
             cls.append('even')
         return ' '.join(cls)
-    
+
+    @property
+    @memoize
+    def show_links(self):
+        props = getToolByName(self.context, 'portal_properties').raptus_article
+        return props.getProperty('media_audio_link', False)
+
+    @property
+    @memoize
+    def show_title(self):
+        """hide or show title. this can be set with a property in portal_properties. 
+        """
+        props = getToolByName(self.context, 'portal_properties').raptus_article
+        return props.getProperty('media_audio_title', True)
+
     @property
     @memoize
     def audios(self):

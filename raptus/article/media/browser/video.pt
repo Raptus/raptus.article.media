@@ -30,7 +30,8 @@
          tal:content="item/description">
         Description
       </p>
-      <p class="discreet">
+      <p class="discreet"
+         tal:condition="view/show_links">
         <a href=""
            tal:attributes="href item/url;"
            tal:condition="not: item/embed"

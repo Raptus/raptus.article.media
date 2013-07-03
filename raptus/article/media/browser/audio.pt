@@ -15,7 +15,7 @@
         tal:condition="item/url"
         tal:attributes="class string:component ${item/class}">
       <metal:manage use-macro="context/raptus_article_macros/macros/manage" />
-      <h2 tal:condition="python: item['title'] and not item['title'] == item['id']"
+      <h2 tal:condition="python: item['title'] and not item['title'] == item['id'] and view.show_title"
           tal:content="item/title">
         Title
       </h2> 
@@ -27,6 +27,7 @@
         Description
       </p>
       <a href="" class="discreet"
+         tal:condition="view/show_links"
          tal:attributes="href item/url;"
          i18n:translate="">
         Download audio file

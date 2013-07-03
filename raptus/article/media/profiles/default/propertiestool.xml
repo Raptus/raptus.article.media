@@ -9,9 +9,12 @@
  <object name="raptus_article" meta_type="Plone Property Sheet" purge="False">
   <property name="media_audio_width" type="int" purge="False">300</property>
   <property name="media_audio_height" type="int" purge="False">25</property>
+  <property name="media_audio_title" type="boolean" purge="False">True</property>
+  <property name="media_audio_link" type="boolean" purge="False">False</property>
   <property name="media_video_width" type="int" purge="False">300</property>
   <property name="media_video_height" type="int" purge="False">250</property>
   <property name="media_video_title" type="boolean" purge="False">True</property>
+  <property name="media_video_link" type="boolean" purge="False">False</property>
  </object>
  <object name="flowplayer_properties" meta_type="Plone Property Sheet" purge="False">
   <property name="plugins/controls/timeColor" type="string">#aaaaaa</property>
